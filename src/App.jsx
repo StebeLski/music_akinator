@@ -1,9 +1,13 @@
 import React from 'react';
+import { Button } from './components';
 
 const App = () => {
   return (
-    <div className="App">
-    </div>
+    <>
+      akinator
+      <Button color="green">Yeap</Button>
+      <Button color="red">Nope</Button>
+    </>
   );
 }
 
