@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
 	html,
 	body {
 		font-family: ${({ theme }) => theme.text.fontFamily};
-		background-color: ${({ theme }) => theme.colors.bgColor};
+		background-color: ${({ theme }) => theme.colors.lightDark};
 		color: ${({ theme }) => theme.colors.textPrimary};
 	}
 `;
@@ -27,8 +27,8 @@ export const theme = {
 		pink: '#C7A1CB',
 		green: '#58B684',
 		red: '#EB5353',
-		bgColor: '#1F2023',
-		bgColorDark: '#1C1D1F',
+		lightDark: '#1F2023',
+		dark: '#1C1D1F',
 	},
 	text: {
 		fontFamily: `'Roboto', sans-serif`,

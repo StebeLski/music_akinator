@@ -5,8 +5,9 @@ const App = () => {
   return (
     <>
       akinator
-      <Button color="green">Yeap</Button>
-      <Button color="red">Nope</Button>
+      <Button primary color="green">Yeap</Button>
+      <Button primary color="red">Nope</Button>
+      <Button>Listen</Button>
     </>
   );
 }
