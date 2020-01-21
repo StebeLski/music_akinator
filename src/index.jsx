@@ -6,6 +6,6 @@ import { Theme } from './Theme';
 ReactDOM.render(
   <Theme>
     <App />
-  </Theme>, 
+  </Theme>,
   document.getElementById('root')
 );
