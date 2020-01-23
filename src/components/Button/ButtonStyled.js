@@ -1,6 +1,4 @@
-import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 const setHover = ({ color }) => {
   switch (color) {
@@ -15,7 +13,7 @@ const setHover = ({ color }) => {
   }
 };
 
-const ButtonStyled = styled.button`
+export const ButtonStyled = styled.button`
   height: 40px;
   padding: 12px 44px;
   border: none;
@@ -33,16 +31,3 @@ const ButtonStyled = styled.button`
     outline: none;
   }
 `;
-
-export const Button = props => <ButtonStyled {...props}>{props.children}</ButtonStyled>;
-
-Button.propTypes = {
-  color: PropTypes.string,
-  primary: PropTypes.bool,
-  children: PropTypes.node.isRequired,
-};
-
-Button.defaultProps = {
-  color: 'pink',
-  primary: false,
-};
