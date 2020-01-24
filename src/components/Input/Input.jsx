@@ -19,7 +19,7 @@ export const Input = () => {
           fill="#828385"
         />
       </SearchIcon>
-      {focus && <Stripe />}
+      <Stripe focus={focus} />
     </InputBox>
   );
 };

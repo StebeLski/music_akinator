@@ -12,6 +12,7 @@ export const InputStyled = styled.input`
   font-size: 14px;
   line-height: 16px;
   overflow: hidden;
+  transition: 0.3s;
 
   &:focus {
     outline: none;
@@ -22,7 +23,6 @@ export const InputStyled = styled.input`
 export const InputBox = styled.div`
   display: inline-block;
   position: relative;
-  margin-bottom: 3rem;
   border-radius: 6px;
   overflow: hidden;
 `;
@@ -42,6 +42,7 @@ export const Stripe = styled.div`
   bottom: 0;
   left: 0;
   height: 2px;
-  width: 100%;
+  width: ${({ focus }) => (focus ? '100%' : '0%')};
   background-color: ${({ theme }) => theme.colors.pink};
+  transition: width 0.5s ease-in-out;
 `;

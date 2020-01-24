@@ -35,3 +35,11 @@ export const AnswerContainer = styled.div`
   width: 100%;
   margin-bottom: 1.2rem;
 `;
+
+export const InputContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 550px;
+  margin-bottom: 4rem;
+`;
