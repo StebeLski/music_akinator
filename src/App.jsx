@@ -1,10 +1,11 @@
 import React from 'react';
 import { Button } from './components';
+import { Header } from './components/Header';
 
 const App = () => {
   return (
     <>
-      akinator
+      <Header />
       <Button primary color="green">
         Yeap
       </Button>
