@@ -1,14 +1,14 @@
 import React from 'react';
 import { Button } from './components';
 import { Header } from './components/Header';
-import { MainContainer, MainHeader, MainSubtitle, GameContainer, AnswerContainer } from './AppStyled';
+import { MainContainer, MainTitle, MainSubtitle, GameContainer, AnswerContainer } from './AppStyled';
 
 const App = () => {
   return (
     <>
       <Header />
       <MainContainer>
-        <MainHeader>Try to beat me, human!</MainHeader>
+        <MainTitle>Try to beat me, human!</MainTitle>
         <MainSubtitle>Enter lyrics or write audio to recognize a song.</MainSubtitle>
         <GameContainer>
           <AnswerContainer>

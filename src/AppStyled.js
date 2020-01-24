@@ -8,7 +8,7 @@ export const MainContainer = styled.main`
   margin-top: 7rem;
 `;
 
-export const MainHeader = styled.h2`
+export const MainTitle = styled.h2`
   color: ${({ theme }) => theme.colors.textPrimary};
   font-size: 36px;
   margin-bottom: 1.5rem;
