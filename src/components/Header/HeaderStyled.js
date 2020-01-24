@@ -9,6 +9,7 @@ export const HeaderStyled = styled.header`
 
 export const HeaderTitle = styled.h1`
   margin: 0 0 0 5rem;
+  color: ${({ theme }) => theme.colors.textPrimary};
   font-size: 18px;
   font-weight: normal;
 `;
