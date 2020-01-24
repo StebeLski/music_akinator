@@ -14,8 +14,9 @@ const setHover = ({ color }) => {
 };
 
 export const ButtonStyled = styled.button`
-  height: 40px;
-  padding: 12px 44px;
+  height: 50px;
+  ${({ primary }) => !primary && 'width: 100%;'}
+  padding: 15px 65px;
   border: none;
   border-radius: 6px;
   background: ${({ theme, color }) => theme.colors[color]};

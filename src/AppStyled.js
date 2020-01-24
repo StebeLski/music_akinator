@@ -20,3 +20,18 @@ export const MainSubtitle = styled.span`
   color: ${({ theme }) => theme.colors.textSecondary};
   font-size: 22px;
 `;
+
+export const GameContainer = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  min-width: 360px;
+`;
+
+export const AnswerContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1.2rem;
+`;
