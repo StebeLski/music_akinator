@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from './components';
 import { Header } from './components/Header';
 import { MainContainer, MainTitle, MainSubtitle, GameContainer, AnswerContainer } from './AppStyled';
+import { Input } from './components/Input';
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <MainContainer>
         <MainTitle>Try to beat me, human!</MainTitle>
         <MainSubtitle>Enter lyrics or write audio to recognize a song.</MainSubtitle>
+        <Input />
         <GameContainer>
           <AnswerContainer>
             <Button primary color="green">
