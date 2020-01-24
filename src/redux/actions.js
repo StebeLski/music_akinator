@@ -1,1 +1,1 @@
-import {ACTION_TYPE} from './constants';
+import { ACTION_TYPE } from './constants';

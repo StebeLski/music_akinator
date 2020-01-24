@@ -1,3 +1,1 @@
-export const ACTION_TYPE = {
-    
-}
+export const ACTION_TYPE = {};

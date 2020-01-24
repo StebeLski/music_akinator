@@ -10,7 +10,6 @@ ReactDOM.render(
     <Theme>
       <App />
     </Theme>
-    ,
   </Provider>,
   document.getElementById('root')
 );
