@@ -23,7 +23,7 @@ const App = () => {
   const [songInputValue, setSongInputValue] = useState('');
   const currentSong = useSelector(state => state.currentSong);
   const screen = useSelector(state => state.curentScreen);
-
+  console.log(screen);
   const dispatch = useDispatch();
 
   const recordVoice = () => {
@@ -68,6 +68,7 @@ const App = () => {
       case SCREENS.SONG_SCREEN:
         return (
           <GameContainer>
+            <SongResult />
             <AnswerContainer>
               <Button primary color="green">
                 Yeap
@@ -108,11 +109,11 @@ const App = () => {
       <Header />
       <MainContainer>
         <MainTitle>{screenTitleHandler(screen)}</MainTitle>
-        {screen !== SCREENS.RESULT_SCREEN ? (
+        {screen === SCREENS.MAIN_SCREEN ? (
           <MainSubtitle>Enter lyrics or write audio to recognize a song.</MainSubtitle>
         ) : null}
+        {screenHandler(screen)}
       </MainContainer>
-      {screenHandler(screen)}
     </>
   );
 };
