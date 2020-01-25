@@ -1,26 +1,26 @@
 import React from 'react';
-import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { ThemeProvider, GlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 import PropTypes from 'prop-types';
 
-const GlobalStyle = createGlobalStyle`
-	${normalize}
+// const GlobalStyle = injectGrobalStyled`
+// 	${normalize}
 
-	@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+// 	@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-	* {
-		margin: 0;
-		box-sizing: border-box;
-	}
+// 	* {
+// 		margin: 0;
+// 		box-sizing: border-box;
+// 	}
 
-	html,
-	body {
-		font-family: ${({ theme }) => theme.text.fontFamily};
-		color: ${({ theme }) => theme.colors.textPrimary};
-    background-color: ${({ theme }) => theme.colors.lightDark};
-	}
-  
-`;
+// 	html,
+// 	body {
+// 		font-family: ${({ theme }) => theme.text.fontFamily};
+// 		color: ${({ theme }) => theme.colors.textPrimary};
+//     background-color: ${({ theme }) => theme.colors.lightDark};
+// 	}
+
+// `;
 
 export const size = {
   mobile: 500,
@@ -53,7 +53,7 @@ export const theme = {
 
 export const Theme = ({ children }) => (
   <ThemeProvider theme={theme}>
-    <GlobalStyle />
+    {/* <GlobalStyle /> */}
     {children}
   </ThemeProvider>
 );
