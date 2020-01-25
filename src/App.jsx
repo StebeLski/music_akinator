@@ -5,7 +5,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button } from './components';
 import { Header } from './components/Header';
 import { SongResult } from './components/SongResult';
-import { getSongByLyrics, getSongByHumming } from './redux/actions';
+import {
+  getSongByLyrics,
+  getSongByHumming,
+  setRaundResult,
+  setCurrentScreen,
+  setCurrentSong,
+  pushSongInSongList,
+  setCurrentTry,
+  setCurrentRound,
+} from './redux/actions';
 import {
   MainContainer,
   MainTitle,
@@ -23,7 +32,18 @@ const App = () => {
   const [songInputValue, setSongInputValue] = useState('');
   const currentSong = useSelector(state => state.currentSong);
   const screen = useSelector(state => state.curentScreen);
+
+  const { maximumRounds, currentRound, maximumTries, currentTry } = useSelector(state => {
+    return {
+      maximumRounds: state.maximumRounds,
+      currentRound: state.currentRound,
+      maximumTries: state.maximumTries,
+      currentTry: state.currentTry,
+    };
+  });
+
   console.log(screen);
+
   const dispatch = useDispatch();
 
   const recordVoice = () => {
@@ -51,6 +71,34 @@ const App = () => {
       });
   };
 
+  const userAnswered = answer => {
+    if (answer) {
+      dispatch(setRaundResult(answer));
+      if (currentRound < maximumRounds) {
+        dispatch(pushSongInSongList());
+        dispatch(setCurrentScreen(SCREENS.MAIN_SCREEN));
+        dispatch(setCurrentSong({}));
+        dispatch(setCurrentRound(currentRound + 1));
+        dispatch(setCurrentTry(1));
+      } else {
+        dispatch(pushSongInSongList());
+        dispatch(setCurrentSong({}));
+        dispatch(setCurrentScreen(SCREENS.RESULT_SCREEN));
+      }
+    } else if (currentTry < maximumTries) {
+      dispatch(pushSongInSongList());
+      dispatch(setCurrentScreen(SCREENS.MAIN_SCREEN));
+      dispatch(setCurrentSong({}));
+      dispatch(setCurrentTry(currentTry + 1));
+    } else {
+      dispatch(pushSongInSongList());
+      dispatch(setCurrentScreen(SCREENS.MAIN_SCREEN));
+      dispatch(setCurrentRound(currentRound + 1));
+      dispatch(setCurrentTry(1));
+      dispatch(setCurrentSong({}));
+    }
+  };
+
   const screenHandler = currentScreen => {
     switch (currentScreen) {
       case SCREENS.MAIN_SCREEN:
@@ -64,10 +112,10 @@ const App = () => {
           <GameContainer>
             <SongResult />
             <AnswerContainer>
-              <Button primary color="green">
+              <Button primary color="green" onClick={() => userAnswered(true)}>
                 Yeap
               </Button>
-              <Button primary color="red">
+              <Button primary color="red" onClick={() => userAnswered(false)}>
                 Nope
               </Button>
             </AnswerContainer>
