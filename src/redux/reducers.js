@@ -1,6 +1,12 @@
 import { ACTION_TYPE } from './constants';
 
-const initialState = {};
+const initialState = {
+  songList: [],
+  maximumRounds: 5,
+  currentRaund: 0,
+  songValueInInput: '',
+  
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
