@@ -10,4 +10,4 @@ cd login-signup
 npm install
 npm run start
 ```
-[DEMO:](https://stebelski.github.io/music_akinator/)
+[DEMO](https://stebelski.github.io/music_akinator/)
