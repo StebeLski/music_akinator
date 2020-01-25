@@ -32,9 +32,9 @@ const initialState = {
     },
   ],
   maximumRounds: 5,
-  currentRound: 5,
+  currentRound: 1,
   maximumTries: 5,
-  currentTry: 4,
+  currentTry: 1,
   songValueInInput: '',
   currentSong: {
     artist: 'Test artist',

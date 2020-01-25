@@ -32,6 +32,7 @@ import { SCREENS } from './redux/constants';
 
 const App = () => {
   const [songInputValue, setSongInputValue] = useState('');
+  const [isRecord, setIsRecord] = useState(false);
   const currentSong = useSelector(state => state.currentSong);
   const screen = useSelector(state => state.curentScreen);
 
@@ -82,6 +83,7 @@ const App = () => {
 
   const recordVoice = () => {
     dispatch(resetDezeerError());
+    setIsRecord(true);
     const recorder = new MicRecorder({
       bitRate: 128,
     });
@@ -97,6 +99,7 @@ const App = () => {
                 type: blob.type,
                 lastModified: Date.now(),
               });
+              setIsRecord(false);
               dispatch(
                 getSongByHumming(file, () => {
                   userAnswered(false);
@@ -115,6 +118,7 @@ const App = () => {
       case SCREENS.MAIN_SCREEN:
         return (
           <InputContainer>
+            {isRecord && 'RECORD'}
             <RecordButton onClick={recordVoice} />
           </InputContainer>
         );
