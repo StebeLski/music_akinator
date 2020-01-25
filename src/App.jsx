@@ -6,6 +6,7 @@ import { Button } from './components';
 import { Header } from './components/Header';
 import { SongResult } from './components/SongResult';
 import { SongList } from './components/SongList';
+
 import {
   getSongByLyrics,
   getSongByHumming,
@@ -16,6 +17,7 @@ import {
   setCurrentTry,
   setCurrentRound,
   resetDezeerError,
+  resetStore,
 } from './redux/actions';
 
 import {
@@ -27,33 +29,51 @@ import {
   InputContainer,
   ResultContainer,
 } from './AppStyled';
-import { Input } from './components/Input';
+// import { Input } from './components/Input';
 import { RecordButton } from './components/RecordButton';
 import { SCREENS } from './redux/constants';
 
 const App = () => {
-  const [songInputValue, setSongInputValue] = useState('');
+  // const [songInputValue, setSongInputValue] = useState('');
   const [isRecord, setIsRecord] = useState(false);
-  const currentSong = useSelector(state => state.currentSong);
+  // const currentSong = useSelector(state => state.currentSong);
   const screen = useSelector(state => state.curentScreen);
 
-  const { maximumRounds, currentRound, maximumTries, currentTry } = useSelector(state => {
+  const {
+    maximumRounds,
+    currentRound,
+    maximumTries,
+    currentTry,
+    songList,
+    isDeezerError,
+    gameResult,
+    currentSong,
+  } = useSelector(state => {
     return {
       maximumRounds: state.maximumRounds,
       currentRound: state.currentRound,
       maximumTries: state.maximumTries,
       currentTry: state.currentTry,
+      songList: state.songList,
+      isDeezerError: state.isDeezerError,
+      gameResult: state.gameResult,
+      currentSong: state.currentSong,
     };
   });
 
-  console.log(screen);
+  const points = gameResult.reduce((accumulator, currentValue) => {
+    if (currentValue) {
+      return accumulator + 1;
+    }
+    return accumulator;
+  }, 0);
 
   const dispatch = useDispatch();
 
   const userAnswered = answer => {
     if (answer) {
       dispatch(setRaundResult(answer));
-      if (currentRound < maximumRounds) {
+      if (currentRound <= maximumRounds) {
         dispatch(pushSongInSongList());
         dispatch(setCurrentScreen(SCREENS.MAIN_SCREEN));
         dispatch(setCurrentSong({}));
@@ -69,7 +89,7 @@ const App = () => {
       dispatch(setCurrentScreen(SCREENS.MAIN_SCREEN));
       dispatch(setCurrentSong({}));
       dispatch(setCurrentTry(currentTry + 1));
-    } else if (currentRound < maximumRounds) {
+    } else if (currentRound <= maximumRounds) {
       dispatch(pushSongInSongList());
       dispatch(setCurrentScreen(SCREENS.MAIN_SCREEN));
       dispatch(setCurrentRound(currentRound + 1));
@@ -113,39 +133,52 @@ const App = () => {
         console.error('Error whith recorder', error);
       });
   };
-
   const screenHandler = currentScreen => {
     switch (currentScreen) {
       case SCREENS.MAIN_SCREEN:
         return (
-          <InputContainer>
-            {isRecord && 'RECORD'}
-            <RecordButton onClick={recordVoice} />
-          </InputContainer>
+          <>
+            <InputContainer>
+              <RecordButton onClick={recordVoice} isRecord={isRecord} />
+            </InputContainer>
+            {songList.length ? <SongList /> : null}
+          </>
         );
       case SCREENS.SONG_SCREEN:
         return (
-          <>
-            <GameContainer>
-              <SongResult />
-              <AnswerContainer>
-                <Button primary color="green" onClick={() => userAnswered(true)}>
-                  Yeap
-                </Button>
-                <Button primary color="red" onClick={() => userAnswered(false)}>
-                  Nope
-                </Button>
-              </AnswerContainer>
-              <Button color="pink">Listen in deezer</Button>
-            </GameContainer>
-            <SongList />
-          </>
+          <GameContainer>
+            <SongResult />
+            <AnswerContainer>
+              <Button primary color="green" onClick={() => userAnswered(true)}>
+                Yeap
+              </Button>
+              <Button primary color="red" onClick={() => userAnswered(false)}>
+                Nope
+              </Button>
+            </AnswerContainer>
+            <Button color="pink" onClick={() => window.open(currentSong.deezerLink, '_blank')}>
+              Listen in deezer
+            </Button>
+            {songList.length ? <SongList /> : null}
+          </GameContainer>
         );
       case SCREENS.RESULT_SCREEN:
         return (
-          <ResultContainer>
-            <span>GG!</span>
-          </ResultContainer>
+          <>
+            <ResultContainer>
+              <span>My point: {points}</span>
+              <Button
+                primary
+                color="green"
+                onClick={() => {
+                  dispatch(resetStore());
+                }}
+              >
+                Try Again
+              </Button>
+            </ResultContainer>
+            {songList.length ? <SongList /> : null}
+          </>
         );
       default:
         return null;
@@ -171,7 +204,9 @@ const App = () => {
       <MainContainer>
         <MainTitle>{screenTitleHandler(screen)}</MainTitle>
         {screen === SCREENS.MAIN_SCREEN ? (
-          <MainSubtitle>Enter lyrics or write audio to recognize a song.</MainSubtitle>
+          <MainSubtitle>
+            {isDeezerError ? 'Nothing found. Try it again.' : 'Write audio to recognize a song.'}
+          </MainSubtitle>
         ) : null}
         {screenHandler(screen)}
       </MainContainer>
