@@ -16,11 +16,17 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case ACTION_TYPE.SET_CURRENT_SONG_OBJECT:
+      console.log('SET_CURRENT_SONG_OBJECT');
+
       return { ...state, currentSong: action.payload };
     case ACTION_TYPE.SET_SCREEN: {
+      console.log('SET_SCREEN');
+
       return { ...state, curentScreen: action.payload };
     }
     case ACTION_TYPE.DEZEER_ERROR: {
+      console.log('DEZEER_ERROR');
+
       return {
         ...state,
         currentSong: null,
@@ -29,12 +35,16 @@ export default (state = initialState, action) => {
     }
 
     case ACTION_TYPE.RESET_DEZEER_ERROR: {
+      console.log('RESET_DEZEER_ERROR');
+
       return {
         ...state,
         isDeezerError: false,
       };
     }
     case ACTION_TYPE.SET_GAME_RESULT: {
+      console.log('SET_GAME_RESULT');
+
       const newGameResult = state.gameResult;
       newGameResult.push(action.payload);
       return {

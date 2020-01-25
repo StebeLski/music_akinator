@@ -14,10 +14,10 @@ const myApi = axios.create({
   },
 });
 
-export const getSongByHumming = async file => {
+export const getSongByHumming = file => {
   return dispatch => {
     const formData = new FormData();
-
+    console.log('----------');
     formData.set('file', file);
     return axios({
       method: 'post',
@@ -28,13 +28,14 @@ export const getSongByHumming = async file => {
       },
     })
       .then(response => {
-        if (response.result !== null) {
+        if (response.data.result !== null) {
+          // console.log(response);
           const payload = {
-            artist: response.result.artist,
-            songName: response.result.title,
-            album: response.result.album,
-            deezerLink: response.result.deezer.link,
-            deezerId: response.result.deezer.Id,
+            artist: response.data.result.artist,
+            songName: response.data.result.title,
+            album: response.data.result.album,
+            deezerLink: response.data.result.deezer.link,
+            deezerId: response.data.result.deezer.Id,
           };
           dispatch({ type: ACTION_TYPE.SET_CURRENT_SONG_OBJECT, payload });
           dispatch({ type: ACTION_TYPE.SET_SCREEN, payload: SCREENS.SONG_SCREEN });

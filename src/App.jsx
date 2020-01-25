@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MicRecorder from 'mic-recorder-to-mp3';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button } from './components';
 import { Header } from './components/Header';
 import { SongResult } from './components/SongResult';
@@ -24,7 +24,7 @@ const App = () => {
   const currentSong = useSelector(state => state.currentSong);
   const screen = useSelector(state => state.curentScreen);
 
-  const currentSong = useSelector(state => state.currentSong);
+  const dispatch = useDispatch();
 
   const recordVoice = () => {
     const recorder = new MicRecorder({
@@ -42,9 +42,9 @@ const App = () => {
                 type: blob.type,
                 lastModified: Date.now(),
               });
-              getSongByHumming(file);
+              dispatch(getSongByHumming(file));
             });
-        }, 10000);
+        }, 5000);
       })
       .catch(error => {
         console.error('Error whith recorder', error);
