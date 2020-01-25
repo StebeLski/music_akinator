@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button } from './components';
 import { Header } from './components/Header';
 import { SongResult } from './components/SongResult';
+import { SongList } from './components/SongList';
 import {
   getSongByLyrics,
   getSongByHumming,
@@ -124,18 +125,21 @@ const App = () => {
         );
       case SCREENS.SONG_SCREEN:
         return (
-          <GameContainer>
-            <SongResult />
-            <AnswerContainer>
-              <Button primary color="green" onClick={() => userAnswered(true)}>
-                Yeap
-              </Button>
-              <Button primary color="red" onClick={() => userAnswered(false)}>
-                Nope
-              </Button>
-            </AnswerContainer>
-            <Button color="pink">Listen in deezer</Button>
-          </GameContainer>
+          <>
+            <GameContainer>
+              <SongResult />
+              <AnswerContainer>
+                <Button primary color="green" onClick={() => userAnswered(true)}>
+                  Yeap
+                </Button>
+                <Button primary color="red" onClick={() => userAnswered(false)}>
+                  Nope
+                </Button>
+              </AnswerContainer>
+              <Button color="pink">Listen in deezer</Button>
+            </GameContainer>
+            <SongList />
+          </>
         );
       case SCREENS.RESULT_SCREEN:
         return (

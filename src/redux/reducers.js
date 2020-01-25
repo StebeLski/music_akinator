@@ -8,6 +8,8 @@ const initialState = {
       album: 'test album',
       deezerLink: '#',
       deezerId: 3148104,
+      songImage:
+        'https://e-cdns-images.dzcdn.net/images/cover/fd195b4bc5112d75704acf0154039ccf/56x56-000000-80-0-0.jpg',
     },
     {
       artist: 'Test artist',
@@ -15,6 +17,8 @@ const initialState = {
       album: 'test album',
       deezerLink: '#',
       deezerId: 3148104,
+      songImage:
+        'https://e-cdns-images.dzcdn.net/images/cover/fd195b4bc5112d75704acf0154039ccf/56x56-000000-80-0-0.jpg',
     },
     {
       artist: 'Test artist',
@@ -22,6 +26,8 @@ const initialState = {
       album: 'test album',
       deezerLink: '#',
       deezerId: 3148104,
+      songImage:
+        'https://e-cdns-images.dzcdn.net/images/cover/fd195b4bc5112d75704acf0154039ccf/56x56-000000-80-0-0.jpg',
     },
     {
       artist: 'Test artist',
@@ -29,6 +35,8 @@ const initialState = {
       album: 'test album',
       deezerLink: '#',
       deezerId: 3148104,
+      songImage:
+        'https://e-cdns-images.dzcdn.net/images/cover/fd195b4bc5112d75704acf0154039ccf/56x56-000000-80-0-0.jpg',
     },
   ],
   maximumRounds: 5,
@@ -42,6 +50,7 @@ const initialState = {
     album: 'test album',
     deezerLink: '#',
     deezerId: 3148104,
+    songImage: 'https://e-cdns-images.dzcdn.net/images/cover/fd195b4bc5112d75704acf0154039ccf/56x56-000000-80-0-0.jpg',
   },
   curentScreen: SCREENS.MAIN_SCREEN,
   isDeezerError: false,
