@@ -5,7 +5,6 @@ import { SongResultBox, FrameBox, InfoBox, SongInfo, AlbumInfo, SongName, SongAr
 export const SongResult = () => {
   const currentSong = useSelector(state => state.currentSong);
   const { deezerId, artist, songName, album } = currentSong;
-  console.log(deezerId);
   return (
     <SongResultBox>
       <FrameBox>

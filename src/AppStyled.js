@@ -46,4 +46,9 @@ export const InputContainer = styled.div`
 
 export const ResultContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  align-item: center;
+  justify-content: space-evenly;
+  text-align: center;
+  height: 120px;
 `;

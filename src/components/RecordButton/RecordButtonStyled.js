@@ -4,7 +4,6 @@ export const RecordButtonStyled = styled.button`
   position: relative;
   width: 128px;
   height: 128px;
-  margin-top: 3rem;
   border: none;
   border-radius: 100%;
   background-color: ${({ theme }) => theme.colors.dark};
@@ -33,4 +32,13 @@ export const Path = styled.path`
   ${RecordButtonStyled}:hover & {
     fill: #1f2023;
   }
+`;
+
+export const RecordButtonContainer = styled.div`
+  transition: 0.3s;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 350px;
 `;

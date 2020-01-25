@@ -1,7 +1,7 @@
 import axios from 'axios';
 import ACTION_TYPE, { SCREENS } from './constants';
 
-const accestTokken = '40911f29cc71fb7f857219bd23b30ed8';
+const accestTokken = '4f4560649da234063527f04c3d8c7951';
 
 export const getSongByHumming = (file, callBack = () => {}) => {
   return dispatch => {
@@ -17,7 +17,6 @@ export const getSongByHumming = (file, callBack = () => {}) => {
     })
       .then(response => {
         if (response.data.result !== null) {
-          // console.log(response);
           const payload = {
             artist: response.data.result.artist,
             songName: response.data.result.title,
@@ -62,7 +61,6 @@ export const getSongFromDeezer = (songName, artist) => {
   axios
     .get(`https://api.deezer.com/search?q=track:"${songName}"`)
     .then(response => {
-      // console.log(response.data);
     })
     .catch(err => console.log(err));
   // };
@@ -87,7 +85,7 @@ export const setCurrentScreen = screenId => {
 
 export const setRaundResult = result => ({ type: ACTION_TYPE.SET_GAME_RESULT, payload: result });
 
-export const setCurrentSong = song => ({ type: ACTION_TYPE.SET_GAME_RESULT, payload: song });
+export const setCurrentSong = song => ({ type: ACTION_TYPE.SET_CURRENT_SONG_OBJECT, payload: song });
 
 export const pushSongInSongList = () => ({ type: ACTION_TYPE.SET_SONG_OBJECT_IN_LIST });
 
@@ -96,5 +94,7 @@ export const setCurrentTry = payload => ({ type: ACTION_TYPE.SET_CURRENT_TRY, pa
 export const setCurrentRound = payload => ({ type: ACTION_TYPE.SET_CURRENT_ROUND, payload });
 
 export const resetDezeerError = () => ({ type: ACTION_TYPE.RESET_DEZEER_ERROR });
+
+export const resetStore = () => ({ type: ACTION_TYPE.RESET_STORE });
 
 // export const pushSetCurrentTry = payload => ({ type: ACTION_TYPE.SET_CURRENT_TRY, payload });
