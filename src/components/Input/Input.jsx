@@ -1,17 +1,29 @@
 import React, { useState } from 'react';
+import { useCallback, useDispatch } from 'react-redux';
 import { InputStyled, InputBox, SearchIcon, Stripe } from './InputStyled';
 
-export const Input = () => {
+export const Input = ({ songInputValue, setSongInputValue, getSongByLyrics }) => {
   const [focus, setFocus] = useState(false);
-
+  const dispatch = useDispatch();
   return (
     <InputBox>
       <InputStyled
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         placeholder="Input lyrics or songname or not"
+        value={songInputValue}
+        onChange={event => setSongInputValue(event.target.value)}
       />
-      <SearchIcon width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <SearchIcon
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        onClick={() => {
+          dispatch(getSongByLyrics(songInputValue));
+        }}
+      >
         <path
           fillRule="evenodd"
           clipRule="evenodd"

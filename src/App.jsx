@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MicRecorder from 'mic-recorder-to-mp3';
 
+import { useSelector } from 'react-redux';
 import { Button } from './components';
 import { Header } from './components/Header';
 import { getSongByLyrics, getSongByHumming } from './redux/actions';
@@ -8,9 +9,12 @@ import { MainContainer, MainTitle, MainSubtitle, GameContainer, AnswerContainer,
 import { Input } from './components/Input';
 import { RecordButton } from './components/RecordButton';
 
-
 const App = () => {
   const [currentScreen, setCurrentScreen] = useState(0);
+  const [songInputValue, setSongInputValue] = useState('');
+  const currentSong = useSelector(state => state.currentSong);
+
+  console.log(currentSong);
 
   const recordVoice = () => {
     const recorder = new MicRecorder({
@@ -28,12 +32,11 @@ const App = () => {
                 type: blob.type,
                 lastModified: Date.now(),
               });
-              console.log(file);
               getSongByHumming(file);
               // const player = new Audio(URL.createObjectURL(file));
               // player.play();
             });
-        }, 2000);
+        }, 10000);
       })
       .catch(error => {
         console.error('Error whith recorder', error);
@@ -47,9 +50,13 @@ const App = () => {
         <MainTitle>Try to beat me, human!</MainTitle>
         <MainSubtitle>Enter lyrics or write audio to recognize a song.</MainSubtitle>
         <InputContainer>
-          <Input />
+          <Input
+            songInputValue={songInputValue}
+            setSongInputValue={setSongInputValue}
+            getSongByLyrics={getSongByLyrics}
+          />
           <span>or</span>
-          <RecordButton />
+          <RecordButton onClick={recordVoice} />
         </InputContainer>
         <GameContainer>
           <AnswerContainer>
