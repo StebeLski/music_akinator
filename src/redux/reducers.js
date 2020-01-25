@@ -1,4 +1,4 @@
-import ACTION_TYPE from './constants';
+import ACTION_TYPE, { SCREENS } from './constants';
 
 const initialState = {
   songList: [],
@@ -8,7 +8,7 @@ const initialState = {
   currentTry: 1,
   songValueInInput: '',
   currentSong: {},
-  curentScreen: 0,
+  curentScreen: SCREENS.MAIN_SCREEN,
   isDeezerError: false,
 };
 

@@ -4,10 +4,12 @@ import MicRecorder from 'mic-recorder-to-mp3';
 import { useSelector } from 'react-redux';
 import { Button } from './components';
 import { Header } from './components/Header';
+import { SongResult } from './components/SongResult';
 import { getSongByLyrics, getSongByHumming } from './redux/actions';
 import { MainContainer, MainTitle, MainSubtitle, GameContainer, AnswerContainer, InputContainer } from './AppStyled';
 import { Input } from './components/Input';
 import { RecordButton } from './components/RecordButton';
+import { SCREENS } from './redux/constants';
 
 const App = () => {
   const [songInputValue, setSongInputValue] = useState('');

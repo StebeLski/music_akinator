@@ -1,5 +1,5 @@
 import axios from 'axios';
-import ACTION_TYPE from './constants';
+import ACTION_TYPE, { SCREENS } from './constants';
 
 const accestTokken = '40911f29cc71fb7f857219bd23b30ed8';
 
@@ -27,20 +27,22 @@ export const getSongByHumming = async file => {
         'content-type': `multipart/form-data; boundary=mp3`,
       },
     })
-      .then(response => 
+      .then(response => {
         if (response.result !== null) {
           const payload = {
-            artist: response.result.artist, 
-            songName: response.result.title , 
-            album: response.result.album ,
-            deezerLink: response.result.deezer.link , 
-            deezerId: response.result.deezer.Id
-          }
-          dispatch({ type: ACTION_TYPE.SET_CURRENT_SONG_OBJECT, payload: payload })
+            artist: response.result.artist,
+            songName: response.result.title,
+            album: response.result.album,
+            deezerLink: response.result.deezer.link,
+            deezerId: response.result.deezer.Id,
+          };
+          dispatch({ type: ACTION_TYPE.SET_CURRENT_SONG_OBJECT, payload });
+          dispatch({ type: ACTION_TYPE.SET_SCREEN, payload: SCREENS.SONG_SCREEN });
         } else {
-          dispatch({ type: ACTION_TYPE.DEZEER_ERROR })
-        })
-      .catch(err => console.log(err));
+          dispatch({ type: ACTION_TYPE.DEZEER_ERROR });
+        }
+      })
+      .catch(err => dispatch({ type: ACTION_TYPE.DEZEER_ERROR }));
   };
 };
 
