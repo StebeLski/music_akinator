@@ -3,8 +3,11 @@ import MicRecorder from 'mic-recorder-to-mp3';
 
 import { Button } from './components';
 import { Header } from './components/Header';
-import { MainContainer, MainHeader, MainSubtitle, GameContainer, AnswerContainer } from './AppStyled';
 import { getSongByLyrics, getSongByHumming } from './redux/actions';
+import { MainContainer, MainTitle, MainSubtitle, GameContainer, AnswerContainer, InputContainer } from './AppStyled';
+import { Input } from './components/Input';
+import { RecordButton } from './components/RecordButton';
+
 
 const App = () => {
   const [currentScreen, setCurrentScreen] = useState(0);
@@ -41,8 +44,13 @@ const App = () => {
     <>
       <Header />
       <MainContainer>
-        <MainHeader>Try to beat me, human!</MainHeader>
+        <MainTitle>Try to beat me, human!</MainTitle>
         <MainSubtitle>Enter lyrics or write audio to recognize a song.</MainSubtitle>
+        <InputContainer>
+          <Input />
+          <span>or</span>
+          <RecordButton />
+        </InputContainer>
         <GameContainer>
           <AnswerContainer>
             <Button primary color="green" onClick={recordVoice}>
