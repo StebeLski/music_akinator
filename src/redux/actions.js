@@ -56,29 +56,6 @@ export const getSongByLyrics = searchString => {
   };
 };
 
-export const getSongFromDeezer = (songName, artist) => {
-  // return dispatch => {
-  axios
-    .get(`https://api.deezer.com/search?q=track:"${songName}"`)
-    .then(response => {
-    })
-    .catch(err => console.log(err));
-  // };
-};
-
-export const getSongFromLastFm = (songName, artist) => {
-  // return dispatch => {
-  axios
-    .get(
-      `http://ws.audioscrobbler.com/2.0/?method=track.search&track=${songName}&api_key=23a0676083a37c24fd89411f25dbc937&format=json`
-    )
-    .then(response => {
-      console.log(response.data);
-    })
-    .catch(err => console.log(err));
-  // };
-};
-
 export const setCurrentScreen = screenId => {
   return { type: ACTION_TYPE.SET_SCREEN, payload: screenId };
 };

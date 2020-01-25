@@ -29,7 +29,7 @@ import {
   InputContainer,
   ResultContainer,
 } from './AppStyled';
-import { Input } from './components/Input';
+// import { Input } from './components/Input';
 import { RecordButton } from './components/RecordButton';
 import { SCREENS } from './redux/constants';
 
