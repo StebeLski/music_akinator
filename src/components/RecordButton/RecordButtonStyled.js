@@ -24,3 +24,12 @@ export const MicroIcon = styled.svg`
   top: 21px;
   left: 25px;
 `;
+
+export const Path = styled.path`
+  fill: #828385;
+  transition: 0.3s;
+
+  ${RecordButtonStyled}:hover & {
+    fill: #1f2023;
+  }
+`;
