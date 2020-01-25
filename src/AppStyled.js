@@ -43,3 +43,7 @@ export const InputContainer = styled.div`
   min-width: 550px;
   margin-bottom: 4rem;
 `;
+
+export const ResultContainer = styled.div`
+  display: flex;
+`;
