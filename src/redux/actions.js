@@ -15,24 +15,35 @@ const myApi = axios.create({
 });
 
 export const getSongByHumming = async file => {
-  // return dispatch => {
+  return dispatch => {
+    const formData = new FormData();
 
-  const formData = new FormData();
-
-  formData.set('file', file);
-
-  return axios({
-    method: 'post',
-    url: `https://api.audd.io/recognize/?api_token=${accestTokken}&return=deezer`,
-    data: formData,
-    headers: {
-      'content-type': `multipart/form-data; boundary=mp3`,
-    },
-  })
-    .then(response => console.log(response))
-    .catch(err => console.log(err));
-  // };
+    formData.set('file', file);
+    return axios({
+      method: 'post',
+      url: `https://api.audd.io/recognize/?api_token=${accestTokken}&return=deezer`,
+      data: formData,
+      headers: {
+        'content-type': `multipart/form-data; boundary=mp3`,
+      },
+    })
+      .then(response => 
+        if (response.result !== null) {
+          const payload = {
+            artist: response.result.artist, 
+            songName: response.result.title , 
+            album: response.result.album ,
+            deezerLink: response.result.deezer.link , 
+            deezerId: response.result.deezer.Id
+          }
+          dispatch({ type: ACTION_TYPE.SET_CURRENT_SONG_OBJECT, payload: payload })
+        } else {
+          dispatch({ type: ACTION_TYPE.DEZEER_ERROR })
+        })
+      .catch(err => console.log(err));
+  };
 };
+
 export const getSongByLyrics = searchString => {
   return dispatch => {
     return axios
