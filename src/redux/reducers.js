@@ -1,14 +1,49 @@
 import ACTION_TYPE, { SCREENS } from './constants';
 
 const initialState = {
-  songList: [],
+  songList: [
+    {
+      artist: 'Test artist',
+      songName: 'test song',
+      album: 'test album',
+      deezerLink: '#',
+      deezerId: 3148104,
+    },
+    {
+      artist: 'Test artist',
+      songName: 'test song',
+      album: 'test album',
+      deezerLink: '#',
+      deezerId: 3148104,
+    },
+    {
+      artist: 'Test artist',
+      songName: 'test song',
+      album: 'test album',
+      deezerLink: '#',
+      deezerId: 3148104,
+    },
+    {
+      artist: 'Test artist',
+      songName: 'test song',
+      album: 'test album',
+      deezerLink: '#',
+      deezerId: 3148104,
+    },
+  ],
   maximumRounds: 5,
   currentRound: 1,
   maximumTries: 5,
   currentTry: 1,
   songValueInInput: '',
-  currentSong: {},
-  curentScreen: SCREENS.MAIN_SCREEN,
+  currentSong: {
+    artist: 'Test artist',
+    songName: 'test song',
+    album: 'test album',
+    deezerLink: '#',
+    deezerId: 3148104,
+  },
+  curentScreen: SCREENS.SONG_SCREEN,
   isDeezerError: false,
   gameResult: [],
 };
