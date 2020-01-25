@@ -15,7 +15,9 @@ import {
   pushSongInSongList,
   setCurrentTry,
   setCurrentRound,
+  resetDezeerError,
 } from './redux/actions';
+
 import {
   MainContainer,
   MainTitle,
@@ -47,31 +49,6 @@ const App = () => {
 
   const dispatch = useDispatch();
 
-  const recordVoice = () => {
-    const recorder = new MicRecorder({
-      bitRate: 128,
-    });
-    recorder
-      .start()
-      .then(() => {
-        setTimeout(() => {
-          recorder
-            .stop()
-            .getMp3()
-            .then(([buffer, blob]) => {
-              const file = new File(buffer, 'uglyVoise.mp3', {
-                type: blob.type,
-                lastModified: Date.now(),
-              });
-              dispatch(getSongByHumming(file));
-            });
-        }, 5000);
-      })
-      .catch(error => {
-        console.error('Error whith recorder', error);
-      });
-  };
-
   const userAnswered = answer => {
     if (answer) {
       dispatch(setRaundResult(answer));
@@ -91,13 +68,47 @@ const App = () => {
       dispatch(setCurrentScreen(SCREENS.MAIN_SCREEN));
       dispatch(setCurrentSong({}));
       dispatch(setCurrentTry(currentTry + 1));
-    } else {
+    } else if (currentRound < maximumRounds) {
       dispatch(pushSongInSongList());
       dispatch(setCurrentScreen(SCREENS.MAIN_SCREEN));
       dispatch(setCurrentRound(currentRound + 1));
       dispatch(setCurrentTry(1));
       dispatch(setCurrentSong({}));
+    } else {
+      dispatch(pushSongInSongList());
+      dispatch(setCurrentSong({}));
+      dispatch(setCurrentScreen(SCREENS.RESULT_SCREEN));
     }
+  };
+
+  const recordVoice = () => {
+    dispatch(resetDezeerError());
+    const recorder = new MicRecorder({
+      bitRate: 128,
+    });
+    recorder
+      .start()
+      .then(() => {
+        setTimeout(() => {
+          recorder
+            .stop()
+            .getMp3()
+            .then(([buffer, blob]) => {
+              const file = new File(buffer, 'uglyVoise.mp3', {
+                type: blob.type,
+                lastModified: Date.now(),
+              });
+              dispatch(
+                getSongByHumming(file, () => {
+                  userAnswered(false);
+                })
+              );
+            });
+        }, 5000);
+      })
+      .catch(error => {
+        console.error('Error whith recorder', error);
+      });
   };
 
   const screenHandler = currentScreen => {

@@ -40,9 +40,9 @@ const initialState = {
     },
   ],
   maximumRounds: 5,
-  currentRound: 1,
+  currentRound: 5,
   maximumTries: 5,
-  currentTry: 1,
+  currentTry: 4,
   songValueInInput: '',
   currentSong: {
     artist: 'Test artist',
@@ -52,7 +52,7 @@ const initialState = {
     deezerId: 3148104,
     songImage: 'https://e-cdns-images.dzcdn.net/images/cover/fd195b4bc5112d75704acf0154039ccf/56x56-000000-80-0-0.jpg',
   },
-  curentScreen: SCREENS.SONG_SCREEN,
+  curentScreen: SCREENS.MAIN_SCREEN,
   isDeezerError: false,
   gameResult: [],
 };
