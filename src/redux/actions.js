@@ -6,7 +6,6 @@ const accestTokken = '40911f29cc71fb7f857219bd23b30ed8';
 export const getSongByHumming = file => {
   return dispatch => {
     const formData = new FormData();
-    console.log('----------');
     formData.set('file', file);
     return axios({
       method: 'post',
@@ -32,7 +31,7 @@ export const getSongByHumming = file => {
           dispatch({ type: ACTION_TYPE.DEZEER_ERROR });
         }
       })
-      .catch(err => dispatch({ type: ACTION_TYPE.DEZEER_ERROR }));
+      .catch(err => dispatch({ type: ACTION_TYPE.DEZEER_ERROR });
   };
 };
 
@@ -92,5 +91,7 @@ export const pushSongInSongList = () => ({ type: ACTION_TYPE.SET_SONG_OBJECT_IN_
 export const setCurrentTry = payload => ({ type: ACTION_TYPE.SET_CURRENT_TRY, payload });
 
 export const setCurrentRound = payload => ({ type: ACTION_TYPE.SET_CURRENT_ROUND, payload });
+
+export const resetDezeerError= () => ({ type: ACTION_TYPE.RESET_DEZEER_ERROR });
 
 // export const pushSetCurrentTry = payload => ({ type: ACTION_TYPE.SET_CURRENT_TRY, payload });

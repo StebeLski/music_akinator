@@ -14,6 +14,7 @@ import {
   pushSongInSongList,
   setCurrentTry,
   setCurrentRound,
+  resetDezeerError,
 } from './redux/actions';
 import {
   MainContainer,
@@ -47,6 +48,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   const recordVoice = () => {
+    dispatch(resetDezeerError());
     const recorder = new MicRecorder({
       bitRate: 128,
     });
