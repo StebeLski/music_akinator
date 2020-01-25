@@ -35,7 +35,7 @@ export const getSongByHumming = file => {
             songName: response.data.result.title,
             album: response.data.result.album,
             deezerLink: response.data.result.deezer.link,
-            deezerId: response.data.result.deezer.Id,
+            deezerId: response.data.result.deezer.id,
           };
           dispatch({ type: ACTION_TYPE.SET_CURRENT_SONG_OBJECT, payload });
           dispatch({ type: ACTION_TYPE.SET_SCREEN, payload: SCREENS.SONG_SCREEN });

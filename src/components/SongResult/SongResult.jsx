@@ -5,7 +5,7 @@ import { SongResultBox, FrameBox, InfoBox, SongInfo, AlbumInfo, SongName, SongAr
 export const SongResult = () => {
   const currentSong = useSelector(state => state.currentSong);
   const { deezerId, artist, songName, album } = currentSong;
-
+  console.log(deezerId);
   return (
     <SongResultBox>
       <FrameBox>
@@ -14,9 +14,9 @@ export const SongResult = () => {
           scrolling="no"
           frameBorder="0"
           allowTransparency="true"
-          src={`https://www.deezer.com/plugins/player?format=square&autoplay=false&playlist=false&width=300&height=300&color=ff0000&layout=dark&size=medium&type=tracks&id=${deezerId}`}
-          width="180"
-          height="180"
+          src={`https://www.deezer.com/plugins/player?format=square&autoplay=false&playlist=false&width=300&height=300&color=ff0000&layout=dark&size=medium&type=tracks&id=${deezerId}&app_id=1`}
+          width="200"
+          height="200"
         />
       </FrameBox>
       <InfoBox>
