@@ -32,9 +32,9 @@ const initialState = {
     },
   ],
   maximumRounds: 5,
-  currentRound: 1,
+  currentRound: 5,
   maximumTries: 5,
-  currentTry: 1,
+  currentTry: 4,
   songValueInInput: '',
   currentSong: {
     artist: 'Test artist',
@@ -43,7 +43,7 @@ const initialState = {
     deezerLink: '#',
     deezerId: 3148104,
   },
-  curentScreen: SCREENS.SONG_SCREEN,
+  curentScreen: SCREENS.MAIN_SCREEN,
   isDeezerError: false,
   gameResult: [],
 };

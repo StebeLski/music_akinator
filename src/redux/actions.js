@@ -29,9 +29,13 @@ export const getSongByHumming = (file, callBack = () => {}) => {
           dispatch({ type: ACTION_TYPE.SET_SCREEN, payload: SCREENS.SONG_SCREEN });
         } else {
           dispatch({ type: ACTION_TYPE.DEZEER_ERROR });
+          callBack();
         }
       })
-      .catch(err => dispatch({ type: ACTION_TYPE.DEZEER_ERROR }));
+      .catch(err => {
+        dispatch({ type: ACTION_TYPE.DEZEER_ERROR });
+        callBack();
+      });
   };
 };
 
@@ -42,10 +46,8 @@ export const getSongByLyrics = searchString => {
         return: 'deezer',
       })
       .then(response => {
-        console.log(response.data);
         if (response.data.status === 'success') {
           const song = response.data.result[0];
-          console.log(response.data.result);
           dispatch({ type: ACTION_TYPE.SET_CURRENT_SONG_OBJECT, payload: song });
           // getSongFromLastFm(song.title);
         }
