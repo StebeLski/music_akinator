@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { SongResultBox, FrameBox, InfoBox, SongIfo, AlbumInfo } from './SongResultStyled';
+import { SongResultBox, FrameBox, InfoBox, SongInfo, AlbumInfo } from './SongResultStyled';
 
 export const SongResult = () => {
   const currentSong = useSelector(state => state.currentSong);
@@ -20,10 +20,10 @@ export const SongResult = () => {
         />
       </FrameBox>
       <InfoBox>
-        <SongIfo>
+        <SongInfo>
           <span>{songName}</span>
           <span>{artist}</span>
-        </SongIfo>
+        </SongInfo>
         <AlbumInfo>
           <span>Album:</span>
           <span>{album}</span>
