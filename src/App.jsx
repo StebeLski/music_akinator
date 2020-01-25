@@ -56,12 +56,6 @@ const App = () => {
       case SCREENS.MAIN_SCREEN:
         return (
           <InputContainer>
-            <Input
-              songInputValue={songInputValue}
-              setSongInputValue={setSongInputValue}
-              getSongByLyrics={getSongByLyrics}
-            />
-            <span>or</span>
             <RecordButton onClick={recordVoice} />
           </InputContainer>
         );
