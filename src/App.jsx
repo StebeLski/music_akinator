@@ -96,8 +96,10 @@ const App = () => {
     switch (curentScreen) {
       case SCREENS.MAIN_SCREEN:
         return 'Try to beat me, human!';
-      case SCREENS.RESULT_SCREEN:
+      case SCREENS.SONG_SCREEN:
         return `I had a result! Is it right?`;
+      case SCREENS.RESULT_SCREEN:
+        return 'Game is over.';
       default:
         return `I'm listening carefully.`;
     }
