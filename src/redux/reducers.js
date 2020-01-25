@@ -52,6 +52,29 @@ export default (state = initialState, action) => {
         gameResult: newGameResult,
       };
     }
+    case ACTION_TYPE.SET_SONG_OBJECT_IN_LIST: {
+      const newSongList = state.songList;
+      newSongList.push(state.currentSong);
+      return {
+        ...state,
+        songList: newSongList,
+      };
+    }
+    case ACTION_TYPE.SET_CURRENT_TRY: {
+      const newSongList = state.songList;
+      newSongList.push(state.currentSong);
+      return {
+        ...state,
+        currentTry: action.payload,
+      };
+    }
+
+    case ACTION_TYPE.SET_CURRENT_ROUND: {
+      return {
+        ...state,
+        currentRound: action.payload,
+      };
+    }
 
     default:
       return state;
