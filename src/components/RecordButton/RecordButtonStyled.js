@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const RecordButtonStyled = styled.button`
   position: relative;
-  width: 64px;
-  height: 64px;
+  width: 128px;
+  height: 128px;
+  margin-top: 3rem;
   border: none;
   border-radius: 100%;
   background-color: ${({ theme }) => theme.colors.dark};
@@ -21,6 +22,15 @@ export const RecordButtonStyled = styled.button`
 
 export const MicroIcon = styled.svg`
   position: absolute;
-  top: 21px;
-  left: 25px;
+  top: 42px;
+  left: 50px;
+`;
+
+export const Path = styled.path`
+  fill: #828385;
+  transition: 0.3s;
+
+  ${RecordButtonStyled}:hover & {
+    fill: #1f2023;
+  }
 `;

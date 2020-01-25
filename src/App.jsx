@@ -32,6 +32,7 @@ const App = () => {
   const [songInputValue, setSongInputValue] = useState('');
   const currentSong = useSelector(state => state.currentSong);
   const screen = useSelector(state => state.curentScreen);
+
   const { maximumRounds, currentRound, maximumTries, currentTry } = useSelector(state => {
     return {
       maximumRounds: state.maximumRounds,
@@ -40,6 +41,8 @@ const App = () => {
       currentTry: state.currentTry,
     };
   });
+
+  console.log(screen);
 
   const dispatch = useDispatch();
 
@@ -101,18 +104,13 @@ const App = () => {
       case SCREENS.MAIN_SCREEN:
         return (
           <InputContainer>
-            <Input
-              songInputValue={songInputValue}
-              setSongInputValue={setSongInputValue}
-              getSongByLyrics={getSongByLyrics}
-            />
-            <span>or</span>
             <RecordButton onClick={recordVoice} />
           </InputContainer>
         );
       case SCREENS.SONG_SCREEN:
         return (
           <GameContainer>
+            <SongResult />
             <AnswerContainer>
               <Button primary color="green" onClick={() => userAnswered(true)}>
                 Yeap
@@ -153,11 +151,11 @@ const App = () => {
       <Header />
       <MainContainer>
         <MainTitle>{screenTitleHandler(screen)}</MainTitle>
-        {screen !== SCREENS.RESULT_SCREEN ? (
+        {screen === SCREENS.MAIN_SCREEN ? (
           <MainSubtitle>Enter lyrics or write audio to recognize a song.</MainSubtitle>
         ) : null}
+        {screenHandler(screen)}
       </MainContainer>
-      {screenHandler(screen)}
     </>
   );
 };
