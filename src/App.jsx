@@ -10,7 +10,6 @@ import { Input } from './components/Input';
 import { RecordButton } from './components/RecordButton';
 
 const App = () => {
-  const [currentScreen, setCurrentScreen] = useState(0);
   const [songInputValue, setSongInputValue] = useState('');
   const currentSong = useSelector(state => state.currentSong);
 
@@ -60,7 +59,7 @@ const App = () => {
         </InputContainer>
         <GameContainer>
           <AnswerContainer>
-            <Button primary color="green" onClick={recordVoice}>
+            <Button primary color="green">
               Yeap
             </Button>
             <Button primary color="red">

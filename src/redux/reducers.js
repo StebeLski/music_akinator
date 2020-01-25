@@ -3,7 +3,9 @@ import ACTION_TYPE from './constants';
 const initialState = {
   songList: [],
   maximumRounds: 5,
-  currentRaund: 0,
+  currentRound: 1,
+  maximumTries: 5,
+  currentTry: 1,
   songValueInInput: '',
   currentSong: {},
   curentScreen: 0,
