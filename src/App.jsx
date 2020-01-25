@@ -13,9 +13,8 @@ import { SCREENS } from './redux/constants';
 
 const App = () => {
   const [songInputValue, setSongInputValue] = useState('');
-  const currentSong = useSelector(state => state.currentSong);
 
-  console.log(currentSong);
+  const currentSong = useSelector(state => state.currentSong);
 
   const recordVoice = () => {
     const recorder = new MicRecorder({
@@ -34,8 +33,6 @@ const App = () => {
                 lastModified: Date.now(),
               });
               getSongByHumming(file);
-              // const player = new Audio(URL.createObjectURL(file));
-              // player.play();
             });
         }, 10000);
       })

@@ -10,6 +10,7 @@ const initialState = {
   currentSong: {},
   curentScreen: SCREENS.MAIN_SCREEN,
   isDeezerError: false,
+  gameResult: [],
 };
 
 export default (state = initialState, action) => {
@@ -31,6 +32,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isDeezerError: false,
+      };
+    }
+    case ACTION_TYPE.SET_GAME_RESULT: {
+      const newGameResult = state.gameResult;
+      newGameResult.push(action.payload);
+      return {
+        ...state,
+        gameResult: newGameResult,
       };
     }
 
